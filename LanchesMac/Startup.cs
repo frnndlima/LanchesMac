@@ -45,12 +45,12 @@ public class Startup
              .AddEntityFrameworkStores<AppDbContext>()
              .AddDefaultTokenProviders();
 
-        //services.ConfigureApplicationCookie(options => options.AccessDeniedPath = "/Home/AccessDenied");
+        services.ConfigureApplicationCookie(options => options.AccessDeniedPath = "/Home/AccessDenied");
 
         services.Configure<ConfigurationImagens>(Configuration.GetSection("ConfigurationPastaImagens"));
 
         services.AddScoped<RelatorioVendasService>();
-        //services.AddScoped<GraficoVendasService>();
+        services.AddScoped<GraficoVendasService>();
 
         services.AddControllersWithViews();
 

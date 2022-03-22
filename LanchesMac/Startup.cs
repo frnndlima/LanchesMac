@@ -47,10 +47,7 @@ public class Startup
 
         //services.ConfigureApplicationCookie(options => options.AccessDeniedPath = "/Home/AccessDenied");
 
-        //services.Configure<ConfigurationImagens>(Configuration.GetSection("ConfigurationPastaImagens"));
-
-
-
+        services.Configure<ConfigurationImagens>(Configuration.GetSection("ConfigurationPastaImagens"));
 
         services.AddScoped<RelatorioVendasService>();
         //services.AddScoped<GraficoVendasService>();

@@ -78,7 +78,8 @@ namespace LanchesMac.Controllers
             }
             else
             {
-                lanches = _lancheRepository.Lanches.Where(p => p.Nome.ToLower().Contains(_searchString.ToLower()));
+                lanches = _lancheRepository.Lanches
+                    .Where(p => p.Nome.ToLower().Contains(_searchString.ToLower()));
             }
 
             return View("~/Views/Lanche/List.cshtml", new LancheListViewModel

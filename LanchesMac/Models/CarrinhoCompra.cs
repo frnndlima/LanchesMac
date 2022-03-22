@@ -14,6 +14,7 @@ namespace LanchesMac.Models
 
         public string CarrinhoCompraId { get; set; }
         public List<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
+
         public static CarrinhoCompra GetCarrinho(IServiceProvider services)
         {
             ISession session =
@@ -82,11 +83,11 @@ namespace LanchesMac.Models
         {
             return CarrinhoCompraItens ??
                    (CarrinhoCompraItens =
-                       _context.CarrinhoCompraItens
-                       .Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
+                       _context.CarrinhoCompraItens.Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
                            .Include(s => s.Lanche)
                            .ToList());
         }
+
         public void LimparCarrinho()
         {
             var carrinhoItens = _context.CarrinhoCompraItens
@@ -95,10 +96,10 @@ namespace LanchesMac.Models
             _context.CarrinhoCompraItens.RemoveRange(carrinhoItens);
             _context.SaveChanges();
         }
+
         public decimal GetCarrinhoCompraTotal()
         {
-            var total = _context.CarrinhoCompraItens
-                .Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
+            var total = _context.CarrinhoCompraItens.Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
                 .Select(c => c.Lanche.Preco * c.Quantidade).Sum();
             return total;
         }
